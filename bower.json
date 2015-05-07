@@ -1,0 +1,19 @@
+{
+  "name": "PolymerBlog",
+  "version": "0.0.1",
+  "authors": [
+    "chrispday <chris.p.day@gmail.com>"
+  ],
+  "description": "Blog using Polymer and DDD",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#0.8.0-rc.7"
+  }
+}

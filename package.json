@@ -1,0 +1,23 @@
+{
+  "name": "PolymerBlog",
+  "version": "0.0.1",
+  "description": "Polymer blog with DDD",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.12.3",
+    "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-mocha": "^2.0.1",
+    "gulp-regex-replace": "^0.2.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "mocha": "^2.2.4",
+    "nedb": "^1.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

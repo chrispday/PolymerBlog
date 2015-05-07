@@ -1,0 +1,1 @@
+{"version":3,"sources":["domain/Post.ts"],"names":[],"mappings":";;;;;;;;IAAa,IAAI,GACL,SADC,IAAI,GACF;uBADF,IAAI;;AAEf,KAAI,CAAC,KAAK,GAAG,EAAE,CAAC;CAChB;;QAHW,IAAI,GAAJ,IAAI","file":"domain/Post.js","sourcesContent":["export class Post {\r\n\tconstructor() {\r\n\t\tthis.title = \"\";\r\n\t}\r\n}"],"sourceRoot":"/source/"}
