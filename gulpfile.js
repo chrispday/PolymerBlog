@@ -8,17 +8,16 @@ var mocha = require("gulp-mocha");
 var replace = require("gulp-regex-replace");
 
 gulp.task("scripts", function () {
-	return gulp.src("src/**/*.ts")
+	return gulp.src("src/**/*.js")
 		.pipe(sourcemaps.init())
-		.pipe(babel())
+		.pipe(babel({ loose: "all" }))
 		.pipe(sourcemaps.write("."))
 		.pipe(gulp.dest("dist/src"));
 });
 
 gulp.task("testsCompile", function () {
-	return gulp.src("tests/**/*.ts")
-		.pipe(babel())
-		.pipe(replace({regex:"\.ts",replace:"\.js"}))
+	return gulp.src("tests/**/*.js")
+		.pipe(babel({ loose: "all" }))
 		.pipe(gulp.dest("dist/tests"));
 });
 
@@ -28,8 +27,8 @@ gulp.task("testsRun", ["scripts", "testsCompile"], function(){
 });
 
 gulp.task("watch", function () {
-	gulp.watch("src/**/*.ts", ["scripts"]);
-	gulp.watch("tests/**/*.ts", ["testsCompile"]);
+	gulp.watch("src/**/*.js", ["scripts"]);
+	gulp.watch("tests/**/*.js", ["testsCompile"]);
 	gulp.watch("dist/tests/**/*.js", ["testsRun"]);
 });
 

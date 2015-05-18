@@ -1,21 +1,36 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-import Post from "../../../src/domain/Post.ts";
-
 var assert = require("assert");
+var _ = require("lodash");
+var DataStore = require("nedb");
+var eventStore = new DataStore();
+var draftPostStore = new DataStore();
+var publishedPostStore = new DataStore(); 
 
-describe("some description", function () {
-	it("some it", function() {
-		var post = new Post();
-		assert.equal(post.title, "");
-		assert.equal(true, true);
-	});
-});
+import { CreatePost } from "../../../src/domain/posts/CreatePost.js";
+import { PostCreated } from "../../../src/domain/posts/PostCreated.js";
+import { Post } from "../../../src/domain/posts/Post.js";
+import { Repository } from "../../../src/domain/Repository.js"
+
+var repository = new Repository(eventStore, draftPostStore, publishedPostStore);
 
 describe("Story is Write Posts", function () {
 	describe("In order to write and refine posts. As a Blogger I want to edit drafts of a Post.", function () {
 		describe("With Scenario Create Post", function () {
 			it("Given _ When a Post is Created Then it should appear in the list of Draft Posts AND with the Date/Time it was created AND it should not be seen by Readers", function() {
-				//assert.fail();	
+				var postId = 1;
+				var dateCreated = Date.now();
+				var event = new PostCreated(postId, dateCreated);
+				repository.SaveEvent(postId, event, e => {});
+				
+				repository.DraftPosts((err, docs) => {
+					assert.equal(docs.length, 1);
+					assert.equal(docs[0].dateCreated, dateCreated);
+				});
+				repository.PublishedPosts((err, docs) => {
+					console.log("err " +err);
+					console.log("docs " +docs);
+					var doc = _.find(docs, d => d.postId == postId)
+					assert.equal(doc === undefined);
+				});
 			});
 		});
 		describe("With Scenario Edit Post", function() {
